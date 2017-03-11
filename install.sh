@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pkgToInstall="zsh vimi misc"
+pkgToInstall="zsh vim misc"
 
 for pkg in $pkgToInstall
 do

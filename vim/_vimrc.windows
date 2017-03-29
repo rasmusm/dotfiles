@@ -1,0 +1,7 @@
+fun! MySys()
+    return 'windows'
+endfun 
+
+set runtimepath+=$HOME/Dropbox/vim
+source $HOME\Dropbox\vim\vimrc
+

@@ -1,0 +1,93 @@
+inoremap <C-Up> <Up>
+inoremap <C-Down> <Down>
+inoremap <up> <up>
+inoremap <down> <down>
+inoremap <PageUp> <PageUp>
+inoremap <PageDown> <PageDown>
+
+
+" Main Setup {{{1
+
+" 	We'll have to keep this the first, as it canges other
+" 	Settings as well. And NOPE, we DONT want Vim to behave like Vi by
+" 	the way :-)
+set nocompatible
+
+"	backspace:  '2' allows backspacing over
+"	indentation, end-of-line, and start-of-line.
+"	see also "help bs".
+set backspace=2
+
+"	completion control:
+set complete=.,w,b,u,t,i,d,k
+
+"	errorbells: damn this beep!  ;-)
+set noerrorbells
+
+"	esckeys: allow usage of cursor keys within insert mode
+"	         You will find this useful when working, eg, on SunOS.
+set esckeys
+
+"	expandtab:  Expand Tabs?  no!
+"	This dosn't makes tabs be spaces
+set expandtab
+
+"	hidden:  Allow "hidden" buffers.  A must-have!
+set hidden
+
+"	hlsearch :  highlight search - show the current search pattern
+"	This gets rather annoying FAST!
+set nohlsearch
+
+"	Add the dash ('-') and the '@' as "letters" to "words".
+"	This makes it possible to expand email addresses, eg
+set iskeyword=@,48-57,_,192-255,@-@
+
+"	startofline:  no:  do not jump to first character with page
+"	commands, ie keep the cursor in the current column.
+set nostartofline
+
+"	splitbelow:  Create new window below current one.
+set splitbelow
+
+"	folder
+set fdm=marker fdl=0
+
+" }}}2
+
+" Looks {{{2
+
+"	Line Numbers
+set nu
+"	I like to have vim autoindent my code.
+set autoindent
+
+"	ruler:       show cursor position?  Yep!
+set ruler
+
+"	shiftwidth:  Number of spaces to use for each
+"	             insertion of (auto)indent.
+set shiftwidth=4
+
+"
+set softtabstop=4
+
+"	tabstop. A tab should always give 8 characters of space
+set tabstop=8
+
+"	showcmd: Show current uncompleted command?  Absolutely!
+set showcmd
+
+"	showmatch: Show the matching bracket for the last ')'
+set showmatch
+
+"	showmode: Show the current mode?  YEEEEEEEEESSSSSSSSSSS!
+set showmode
+
+"	background:  Are we using a "light" 
+"	or "dark" background?
+set background=light
+
+" This forces Vim to have no GUI really. We only run in GUI mode to
+" accomodate the use of the more powerful color system
+set guioptions='acmtr'

@@ -142,7 +142,7 @@ if MySys() == "linux"
     "	Swapdir
     set dir=/tmp/
     "	Dictionary file:
-    set dictionary=~/.vim/dict
+    set dictionary=~/.vimdict
 elseif MySys() == "windows"
     set backupdir=$TEMP
     set directory=$TEMP
@@ -191,103 +191,14 @@ inoremap <Down> <Down>
 inoremap <PageUp> <PageUp>
 inoremap <PageDown> <PageDown>
 
-" Spell
-com -nargs=? Spell call Spell(<q-args>)
-com -nargs=? Spellscreen call Spell(<q-args>)
-
-"  test
-com! -range=1 Com :call Comment(<line1> . "," . <line2>)
-" }}}1
-
-" {{{1 Functions
-function FT_new_file()
-    exe "% s/<file>/" . expand("%:t:r") . "_" . expand("%:t:e") . "/"
-    exe "% s/<time>/" . strftime("%Y %b %d") . "/"
-	norm 8G
-endfunction
-
-function Comment(...) range
-	let line1 = a:1
-	let starttag = '\/*'
-	let sluttag = '*\/'
-	exe line1 's/^/'.starttag.'/'
-	exe line1 's/$/'.sluttag.'/'
-endfunction
-
-function UnComment(...)
-	let line1 = a:1
-	let starttag = '\/\*'
-	let sluttag = '\*\/'
-	exe line1 's/'.starttag.'//'
-	exe line1 's/'.sluttag.'//'
-endfunction
-
-" {{{2 Spell
-function Spell(...)
-	if a:0>0 && a:1 != "" 
-		let dict = a:1
-	el
-		let dict = "dansk"
-	endif
-	exe "w!"
-	exe "!ispell -d " . dict . ' -S % '
-	exe "e!"
-endfunction
-
-function MailSpell(...)
-	if a:0>0 && a:1 != "" 
-		let dict = a:1
-	el
-		let dict = "dansk"
-	endif
-	exe "w!"
-	exe "!newsbody -qs -n % -p ispell -- -d " . dict . ' -S \%f '
-	exe "e!"
-endfunction
-
-" }}}2
 " }}}1
 
 " {{{1 Autocommands 
-
-" {{{2 Skeleton files
-autocmd BufNewfile *.c   		0r ~/.vim/skeleton.c
-autocmd BufNewfile *.h	  	0r ~/.vim/skeleton.h
-autocmd BufNewfile *.cc,*.cpp,*.C	0r ~/.vim/skeleton.cc
-autocmd BufNewfile *.hh	 	0r ~/.vim/skeleton.h
-"autocmd BufNewfile *.tex	 	0r ~/.vim/skeleton.tex
-
-autocmd BufNewfile *.c		  	call FT_new_file()
-autocmd BufNewfile *.C,*.cpp,*.cc 	call FT_new_file()
-autocmd BufNewfile *.h			call FT_new_file()
-autocmd BufNewfile *.hh			call FT_new_file()
-
-" }}}2
 
 " c/c++
 autocmd BufNewfile,BufRead *.c,*.cc,*.cpp,*.C,*.h,*.hh,*.hpp set cindent
 autocmd BufNewfile,BufRead *.c,*.cc,*.cpp,*.C,*.h,*.hh,*.hpp set cino=t0,l1
 
-" mail from gnus
-autocmd BufNewfile,BufRead /tmp/mutt* set list listchars=tab:>-,trail:. tw=70
-autocmd BufNewfile,BufRead /tmp/mutt* com! -nargs=? Spell call MailSpell(<q-args>)
-autocmd BufNewfile,BufRead /tmp/mutt* com! -nargs=? Spellscreen call MailSpell(<q-args>)
-autocmd BufNewfile,BufRead /tmp/mutt* set filetype=mail
-autocmd BufNewfile,BufRead /tmp/mutt* com! Rmsig :g/^> -- $/,/^$/-1d
-
-" news from gnus and mail form my mutt
-autocmd BufNewfile,BufRead /tmp/.gnus.* set list listchars=tab:>-,trail:. tw=70
-autocmd BufNewfile,BufRead /tmp/.gnus.* com! -nargs=? Spell call MailSpell(<q-args>)
-autocmd BufNewfile,BufRead /tmp/.gnus.* com! -nargs=? Spellscreen call MailSpell(<q-args>)
-autocmd BufNewfile,BufRead /tmp/.gnus.* set filetype=mail
-autocmd BufNewfile,BufRead /tmp/.gnus.* com! Rmsig :g/^> -- $/,/^$/-1d
-
-" autocmd BufNewfile,BufRead *.tex source ~/.vim/ftplugin/tex_latexSuite.vim
-autocmd BufNewfile,BufRead *.tex source ~/.vim/indent/tex.vim
-autocmd BufNewfile,BufRead *.tex set tw=72 iskeyword=@,48-57,_,192-255,@-@,:,-
-
-" ruby
-autocmd BufNewfile,BufRead *.rb source ${VIMRUNTIME}/indent/ruby.vim
 " }}}1
 
 " {{{1 For Syntax highligting:

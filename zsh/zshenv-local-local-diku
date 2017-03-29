@@ -1,0 +1,43 @@
+# $Id: zshenv-local-local-diku,v 1.2 2003/09/20 14:28:05 rasmusm Exp $
+
+#export CVSROOT=~/local/cvs
+
+# {{{ proxy
+export proxy=ratatosk.diku.dk:8080
+export http_proxy=http://${proxy}
+export ftp_proxy=${proxy}
+# }}}
+
+# {{{ mail and news
+#export NNTPSERVER=news.diku.dk
+#export MAILDIR=~/.mail/inbox/ 
+export MAIL="" 
+# }}}
+
+# {{{ path's
+export MANPATH=~/local/man:/usr/local/dikunix/man/:/usr/local/image/man:${MANPATH}
+export LPATH=${HOME}/local/lib:${LPATH}:/usr/local/dikunix/lib
+#export PATH=`echo $PATH | perl -ne 's/(.*$ENV{"DIKUARCH"}):(.*)/$1:\/usr\/local\/dikunix\/bin:$2/,print $_'`
+
+export PATH=/opt/bin:${HOME}/bin/shell:${PATH}
+
+#export LD_LIBRARY_PATH=${HOME}/local/lib:${LD_LIBRARY_PATH}:/usr/local/dikunix/lib
+export TEXMFCTAN=/home/disk16/rasmusm/local/share/texmf
+# }}}
+
+# MPI {{{
+#export MPI_HOME=/opt/scali
+#export LD_LIBRARY_PATH=/opt/scali/lib
+#export PATH=$PATH:/opt/scali/bin:/opt/scali/contrib/pbs/bin/
+#export MANPATH=$MANPATH:/opt/scali/contrib/pbs/man
+# }}}
+
+# Emerald {{{
+export EMPLANE=16100
+export EMERALDROOT=/usr/local/projects/disk03/intropar/emerald 
+export PATH=${PATH}:${EMERALDROOT}/bin
+# }}}
+
+# LEDA {{{
+export LEDAROOT=/usr/local/projects/disk02/algorithm/LEDA-4.3
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LEDAROOT}

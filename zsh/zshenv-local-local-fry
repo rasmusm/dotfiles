@@ -1,0 +1,6 @@
+# $Id: zshenv-local-local-fry,v 1.1 2002/10/21 10:18:48 rasmusm Exp $
+
+# {{{ path's
+#export MANPATH=${HOME}/local/man:${MANPATH}:/usr/local/man
+export PATH=${HOME}/local/bin/:${PATH}
+# }}}

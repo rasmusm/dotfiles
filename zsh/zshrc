@@ -1,0 +1,82 @@
+# $Id: zshrc,v 1.5 2002/12/27 21:01:11 rasmusm Exp $
+
+# {{{ Include aliases
+    [[ -f $HOME/.zalias && -r $HOME/.zalias ]] && { source $HOME/.zalias; }
+# }}}
+
+# {{{ Include completions 
+    # [[ -f $HOME/.zshcomp && -r $HOME/.zshcomp ]] && { source $HOME/.zshcomp; }
+    autoload -U compinit
+    compinit -u
+# }}}
+
+# {{{ PROMPT 
+    export PS1="%n@%m %B%c%b >"
+# }}}
+
+# {{{ Select/deselect shell features
+setopt NO_BEEP MULTIOS CORRECT 
+# }}}
+
+# {{{ Keys
+keys="vi"
+if [[ $keys == "vi" ]] then
+	bindkey -v
+	bindkey -M viins '^[[D' vi-backward-char '^[[C' vi-forward-char
+	bindkey -M viins '^[[A' up-line-or-history '^[[B' down-line-or-history
+	bindkey -M viins "^[[3~" vi-delete-char "" vi-backward-delete-char
+	bindkey -M viins "" vi-cmd-mode
+	bindkey -M viins "^p" history-beginning-search-backward
+	bindkey -M viins "^n" history-beginning-search-forward
+
+
+	bindkey -M viins "" vi-beginning-of-line  "" vi-end-of-line
+else
+	bindkey -e # key as in emacs
+	bindkey -M emacs "^[[3~" delete-char # the delete key
+fi
+
+# vicmd (use ^x^v i emacs mod)
+bindkey -M vicmd "^[[3~" vi-delete-char "" vi-backward-delete-char
+# }}}
+
+# {{{ xterm header
+case $TERM in
+        *xterm*|rxvt|(dt|e|k|a)term)
+                precmd() {
+                  print -nP "\e]0;"
+		  print -nP "%(!.%n@.)%m: %~"
+		  print -nP "\a"
+                }
+
+                preexec () {
+                  print -nP "\e]0;"
+		  print -nP "%(!.%n@.)%m: "
+                  print -nr "$1"
+                  print -nP "\a"
+                }
+                ;;
+        *)
+                precmd() {}
+                preexec () {}
+                ;;
+esac
+
+# }}}
+
+# {{{ Mail
+MAIL_WARNING=0
+MAILCHECK=0
+# }}}
+
+# {{{ Setup command history
+HISTSIZE=1000
+HISTFILE=$HOME/.zhistory
+SAVEHIST=200
+setopt HIST_IGNORE_DUPS NO_HIST_BEEP HIST_IGNORE_SPACE HIST_REDUCE_BLANKS
+setopt INC_APPEND_HISTORY SHARE_HISTORY
+# }}}
+
+# {{{ X
+[[ -n "$DISPLAY" ]] && resize >& /dev/null
+# }}}

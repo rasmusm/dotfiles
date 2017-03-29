@@ -1,8 +1,8 @@
 #!/bin/sh
 
-pkgToInstall="zsh"
+pkgToInstall="zsh vim"
 
 for pkg in $pkgToInstall
 do
-    cd $pkg && ./install.sh
+    (cd $pkg && ./install.sh)
 done

@@ -1,0 +1,6 @@
+fun! MySys()
+    return 'linux'
+endfun 
+
+set runtimepath+=$HOME/local/dotfiles/vim
+source $HOME/local/dotfiles/vim/vimrc

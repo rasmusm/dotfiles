@@ -7,11 +7,6 @@ export EDITOR=vim              # name of your default editor
 export PAGER=less                # name of your default pager
 #export SHELL=zsh
 
-# {{{ cvs
-export CVS_RSH=ssh
-export CVSROOT=:ext:rasmusm@rasmusm.dk:/home/rasmusm/local/.cvsroot
-# }}}
-
 # {{{ get local stuff... possibly overwrite
 [[ -f ~/.zshenv-local ]] && source ~/.zshenv-local
 # }}}

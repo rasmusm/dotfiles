@@ -23,10 +23,20 @@ endif
 
 " Plugins {{{1
 " https://github.com/tpope/vim-pathogen
-execute pathogen#infect()
+" execute pathogen#infect()
+
+function! LoadAndcall(plug, command) 
+  let comexist = exists(':' . a:command)
+  if comexist == 0 
+    execute ('packadd ' . a:plug)
+  endif
+  execute a:command
+endfunction
 
 " https://github.com/scrooloose/nerdtree
-map <Leader>n :NERDTreeToggle<CR>
+command! NTT call LoadAndcall('nerdtree', 'NERDTreeToggle')
+map <Leader>n :NTT<CR>
+
 " Array of reg.ex of filenames nerdtree ignores
 let NERDTreeIgnore = ['\.pyc$', '\.hi$', '\.o$']
 
@@ -106,10 +116,10 @@ set ruler
 
 "	shiftwidth:  Number of spaces to use for each
 "	             insertion of (auto)indent.
-set shiftwidth=4
+set shiftwidth=2
 
 "
-set softtabstop=4
+set softtabstop=2
 
 "	tabstop. A tab should always give 8 characters of space
 set tabstop=8

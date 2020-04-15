@@ -1,0 +1,6 @@
+{
+    "plugins" : {
+        "start" : [ "vim-nix" ],
+        "opt"   : [ "nerdtree", "nerdtree-git-plugin" ]
+    }
+}

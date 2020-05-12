@@ -5,8 +5,8 @@ version 6.0
 " Uses the tricks from http://stackoverflow.com/a/1184897 to do dualplatform
 " dropbox sync of vomrc and vimfiles
 
-" gvim defaults pwd are c:\windows\system32 on windows but i want $HOME 
-" TODO: can this be done prittyer 
+" gvim defaults pwd are c:\windows\system32 on windows but i want $HOME
+" TODO: can this be done prittyer
 if getcwd() == 'C:\Windows\system32'
     cd $HOME
 endif
@@ -25,20 +25,47 @@ endif
 " https://github.com/tpope/vim-pathogen
 " execute pathogen#infect()
 
-function! LoadAndcall(plug, command) 
+function! LoadAndcall(plug, command, keymap, rebind)
   let comexist = exists(':' . a:command)
-  if comexist == 0 
+  if comexist == 0
+    if a:keymap != ''
+      echom a:keymap
+      execute 'nunmap ' . a:keymap
+    endif
     execute ('packadd ' . a:plug)
+  endif
+
+  if a:rebind == 'true'
+    execute 'nmap ' . a:keymap .' '.  ':' . a:command . '<CR>'
   endif
   execute a:command
 endfunction
 
 " https://github.com/scrooloose/nerdtree
-command! NTT call LoadAndcall('nerdtree', 'NERDTreeToggle')
-map <Leader>n :NTT<CR>
+command! NTT call LoadAndcall('nerdtree', 'NERDTreeToggle', '<Leader>n', 'true')
+nmap <Leader>n :NTT<CR>
 
 " Array of reg.ex of filenames nerdtree ignores
 let NERDTreeIgnore = ['\.pyc$', '\.hi$', '\.o$']
+
+" https://github.com/vimwiki/vimwiki/
+"command! VW call LoadAndcall('vimwiki', 'VimwikiIndex', '<Leader>ww', 'false')
+"nmap <Leader>ww :VW<CR>
+"nmap <Leader>w <Plug>VimwikiIndex
+
+let wiki_1 = {}
+let wiki_1.path = '~/configs/vimwiki'
+let wiki_1.syntax = 'default'
+let wiki_1.ext = '.wiki'
+let wiki_1.auto_export = 1
+
+let wiki_2 = {}
+let wiki_2.path = '~/.vimwiki/'
+let wiki_2.syntax = 'markdown'
+let wiki_2.ext = '.md'
+
+let g:vimwiki_list = [wiki_1, wiki_2]
+let g:vimwiki_ext2syntax = {'.wiki': 'default', '.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 
 " }}}1
 
@@ -174,6 +201,10 @@ set suffixes=.aux,.bak,.dvi,.gz,.idx,.log,.ps,.swp,.tar,.o
 " accomodate the use of the more powerful color system
 set guioptions='acmtr'
 
+if has('gui_running')
+  colorscheme solarized
+endif
+
 " }}}2
 " VimSpell {{{2
 let spell_language_list = "dansk,english" 
@@ -201,6 +232,23 @@ inoremap <Down> <Down>
 inoremap <PageUp> <PageUp>
 inoremap <PageDown> <PageDown>
 
+" from msvim.vim
+if has("clipboard")
+    " SHIFT-Del are Cut
+    vnoremap <S-Del> "+x
+
+    " CTRL-Insert are Copy
+    vnoremap <C-Insert> "+y
+
+    " SHIFT-Insert are Paste
+    map <S-Insert>		"+gp
+
+    cmap <S-Insert>		<C-R>+
+
+    exe 'inoremap <script> <S-Insert> <C-G>u' . paste#paste_cmd['i']
+    exe 'vnoremap <script> <S-Insert>' . paste#paste_cmd['v']
+endif
+
 " }}}1
 
 " {{{1 Autocommands 
@@ -215,6 +263,15 @@ autocmd BufNewfile,BufRead *.c,*.cc,*.cpp,*.C,*.h,*.hh,*.hpp set cino=t0,l1
 if has("syntax")
 	syntax on
 endif
+
+set listchars=tab:->,trail:·
+set list
+" highlight all trailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+au ColorScheme * highlight ExtraWhitespace guibg=red
+au BufEnter * match ExtraWhitespace /\s\+$/
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhiteSpace /\s\+$/
 
 " }}}1
 

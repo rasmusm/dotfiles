@@ -1,14 +1,18 @@
 #!/bin/sh
 
-echo "installing zsh dotfiles"
+name=zsh
 
-if [ "X$force" = "Xtrue" ]; then
-LNARGS=-f
-fi
+source $srcDir/lib.sh
 
-srcpath=`pwd`
+archFilter="\
+    *linux*|*bsd*)linux\
+    nixos*)nixos\
+"
 
-ln $LNARGS -s $srcpath/zshenv $HOME/.zshenv
-ln $LNARGS -s $srcpath/zshrc $HOME/.zshrc
-ln $LNARGS -s $srcpath/zshenv-local-${RMARCH} $HOME/.zshenv-local
+findArchInstallUserRoot "zshenv-local-" ".zshenv-local"
+
+debugVar temparch
+
+installUserRoot zshenv .zshenv
+installUserRoot zshrc .zshrc
 

@@ -1,22 +1,19 @@
 #!/bin/sh
 
-echo "installing vim dotfiles"
+name=vim
 
-if [ "X$force" = "Xtrue" ]; then
-LNARGS=-f
-fi
+source $srcDir/lib.sh
 
-srcpath=`pwd`
+archFilter="\
+    linux|*bsd*)linux\
+    nixos*)nixos\
+    win*)windows\
+"
 
-temparch=linux
+findArchInstallUserRoot "_vimrc." ".vimrc"
 
-case ${RMARCH} in
-    linux|*bsd)
-        temparch=linux
-        ;;
-    *)
-        temparch=${RMARCH}
-        ;;
-esac        
+debugVar temparch
 
-ln $LNARGS -s $srcpath/_vimrc.${temparch} $HOME/.vimrc
+installBin "startvim.sh" "startvim"
+installBin "startvim.sh" "edit"
+ifTempArchDo "nixos" 'runCmd "$srcDir/$name/plugins.sh -j > $srcDir/$name/plugins.json"'

@@ -1,12 +1,8 @@
 #!/bin/sh
 
-echo "installing misc dotfiles"
+name=misc
 
-if [ "X$force" = "Xtrue" ]; then
-LNARGS=-f
-fi
+source $srcDir/lib.sh
 
-srcpath=`pwd`
-
-ln $LNARGS -s $srcpath/screenrc $HOME/.screenrc
-
+installUserRoot screenrc .screenrc
+installUserRoot tmux.conf .tmux.conf

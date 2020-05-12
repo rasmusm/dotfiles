@@ -11,7 +11,10 @@
 # }}}
 
 # {{{ PROMPT 
-    export PS1="%n@%m %B%c%b >"
+    #export PS1="%n@%m %B%c%b >"
+    ZSH_THEME="blinks"
+    source $ZSH/oh-my-zsh.sh
+
 # }}}
 
 # {{{ Select/deselect shell features

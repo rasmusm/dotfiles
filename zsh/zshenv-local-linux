@@ -1,0 +1,2 @@
+export MANPATH=${HOME}/local/man:${MANPATH}
+export PATH=${HOME}/local/bin/:${PATH}

@@ -1,6 +1,6 @@
 {
-    "plugins" : {
-        "start" : [ "vim-nix" ],
-        "opt"   : [ "nerdtree", "nerdtree-git-plugin" ]
+      "plugins" : {
+        "start" : ["vim-nix", "vim-pandoc-syntax", "nerdtree", "nerdtree-git-plugin", "vimwiki", "vim-pandoc"],
+        "opt" : []
+      }
     }
-}

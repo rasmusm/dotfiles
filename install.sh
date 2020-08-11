@@ -26,6 +26,7 @@ eval "$(makeDefaults "$args")"
 
 export srcDir srcDirRun userRoot userRootRun binDir binDirRun
 export RMARCH force DEBUG dryRun
+mkdir -p "$binDir" "$userRoot"
 
 if [ "X${RMARCH}" = "X" ]; then
   echo "Error: No RMARCH"

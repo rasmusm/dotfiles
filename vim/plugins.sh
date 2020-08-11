@@ -21,6 +21,7 @@ vim_pandoc_syntax_Start="start"
 vim_pandoc_syntax_URL="https://github.com/vim-pandoc/vim-pandoc-syntax.git"
 
 vimPlugDir="${vimPlugDir:-"$(cd `dirname $0` && echo `pwd`)/plugs"}"
+mkdir -p "$vimPlugDir"
 
 logFile=${logFile:-$vimPlugDir/install.log}
 errFile=${errFile:-$vimPlugDir/install-err.log}

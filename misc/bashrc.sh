@@ -1,0 +1,2 @@
+
+source /configs/dotfiles/bash/ 

@@ -42,6 +42,10 @@ override_git_prompt_colors() {
       NixPrompt="nix-shell"
     fi
   fi
+  local VimPrompt=""
+  if [[ -n "$VIMSERVER_TOUSE" ]]; then
+    VimPrompt=" [vim:$VIMSERVER_TOUSE]"
+  fi
 
   local PromptChar="${UserPomptColor} => ${ResetColor}"
   local HostColor
@@ -50,7 +54,7 @@ override_git_prompt_colors() {
   else
     HostColor=${Yellow}
   fi
-  GIT_PROMPT_START_USER="_LAST_COMMAND_INDICATOR_${ResetColor}[${HostColor}\\h${ResetColor}:${Green}${PathShort}${ResetColor}]"
+  GIT_PROMPT_START_USER="_LAST_COMMAND_INDICATOR_${ResetColor}[${HostColor}\\h${ResetColor}:${Green}${PathShort}${ResetColor}]${VimPrompt}"
   GIT_PROMPT_START_ROOT="${GIT_PROMPT_START_USER}"
   GIT_PROMPT_END_USER="\n${NixPrompt}${PromptChar}"
   GIT_PROMPT_END_ROOT="${GIT_PROMPT_END_USER}"

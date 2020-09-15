@@ -6,4 +6,4 @@ source $srcDir/lib.sh
 
 runCmd "sed -e 's|__RUNDIR__|$srcDirRun|' $srcDir/$name/bashrc.sh > $srcDir/$name/bashrc.out"
 installUserRoot bashrc.out .bashrc
-installUserRoot bashrc.out .bash_Profile
+installUserRoot bashrc.out .bash_profile

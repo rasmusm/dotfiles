@@ -54,15 +54,21 @@ let NERDTreeIgnore = ['\.pyc$', '\.hi$', '\.o$']
 "nmap <Leader>w <Plug>VimwikiIndex
 
 let wiki_1 = {}
-let wiki_1.path = '~/configs/vimwiki'
+let wiki_1.path = '/configs/vimwiki'
 let wiki_1.syntax = 'default'
 let wiki_1.ext = '.wiki'
 let wiki_1.auto_export = 1
 
 let wiki_2 = {}
-let wiki_2.path = '~/.vimwiki/'
-let wiki_2.syntax = 'markdown'
-let wiki_2.ext = '.md'
+let wiki_2.path = '~/configs/vimwiki'
+let wiki_2.syntax = 'default'
+let wiki_2.ext = '.wiki'
+let wiki_2.auto_export = 1
+
+let wiki_3 = {}
+let wiki_3.path = '~/.vimwiki/'
+let wiki_3.syntax = 'markdown'
+let wiki_3.ext = '.md'
 
 let g:vimwiki_list = [wiki_1, wiki_2]
 let g:vimwiki_ext2syntax = {'.wiki': 'default', '.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}

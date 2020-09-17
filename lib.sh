@@ -86,7 +86,7 @@ findArch () {
     esac \
    "
 }
-  
+
 findArchInstallUserRoot () {
   local preName=$1 file=$1${RMARCH} target=$2
 

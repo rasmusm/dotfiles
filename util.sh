@@ -5,7 +5,7 @@ source $srcDir/libdebug.sh
 echoHelp () {
   local argStr="$1" a
   local IFS="
-"   
+"
   for a in $argStr ;do
     case $a in
       ARGS0@*)
@@ -35,7 +35,7 @@ echoHelp () {
 makeDefaults () {
   local argStr="$1" a
   local IFS="
-"   
+"
   for a in $argStr ;do
     case $a in
       ARGS0@*)
@@ -88,9 +88,9 @@ getArgCase () {
   local flatargs=$(echo $args)
   buildCase () {
     local key="$1"
-    local a 
+    local a
     local IFS="
-"   
+"
     printf "case \$%s in\n" $key
     for a in $args ;do
       argParserCase "$a" "$key"

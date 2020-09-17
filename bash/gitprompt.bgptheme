@@ -36,11 +36,13 @@ override_git_prompt_colors() {
 
   local NixPrompt=""
   if [[ -n "$IN_NIX_SHELL" ]]; then
+    local displayname=""
     if [[ -n "$name" && "$name" != "shell" ]]; then
-      NixPrompt="$name"
+      displayname="$name"
     else
-      NixPrompt="nix-shell"
+      displayname="nix-shell"
     fi
+    NixPrompt="${Cyan}${displayname}${ResetColor}"
   fi
   local VimPrompt=""
   if [[ -n "$VIMSERVER_TOUSE" ]]; then
@@ -54,13 +56,13 @@ override_git_prompt_colors() {
   else
     HostColor=${Yellow}
   fi
-  GIT_PROMPT_START_USER="_LAST_COMMAND_INDICATOR_${ResetColor}[${HostColor}\\h${ResetColor}:${Green}${PathShort}${ResetColor}]${VimPrompt}"
+  GIT_PROMPT_START_USER="_LAST_COMMAND_INDICATOR_${ResetColor}[${HostColor}\\h${ResetColor}:${Green}${PathShort}${ResetColor}]__GitVimPrompt__"
   GIT_PROMPT_START_ROOT="${GIT_PROMPT_START_USER}"
-  GIT_PROMPT_END_USER="\n${NixPrompt}${PromptChar}"
+  GIT_PROMPT_END_USER="__NixosPrompt__\n${NixPrompt}${PromptChar}"
   GIT_PROMPT_END_ROOT="${GIT_PROMPT_END_USER}"
   GIT_PROMPT_LEADING_SPACE=1
   GIT_PROMPT_PREFIX="${Cyan}["
-  GIT_PROMPT_SUFFIX="${Cyan}]"
+  GIT_PROMPT_SUFFIX="${Cyan}]${ResetColor}"
   GIT_PROMPT_SYMBOLS_NO_REMOTE_TRACKING="✭"
 }
 

@@ -9,7 +9,7 @@ ARGS0@force@-f|--force@true@''@Force overwrire of files when installing
 ARGSR@force@--unforce@unset force@Do not force overwrire of files when installing
 ARGS1@userRoot@-u|--userRoot@\$1@\$HOME@Path to the users dotfiles at install time
 ARGS1@userRootRun@-r|--userRootRun@\$1@\$userRoot@Path to the users dotfiles at run time
-ARGS1@pkgs@-p|--pkgs@\$1@zsh vim misc@What pkgs to install\n    the pakages name are the name of the dir its in.
+ARGS1@pkgs@-p|--pkgs@\$1@bash zsh vim misc@What pkgs to install\n    the pakages name are the name of the dir its in.
 ARGS1@srcDirRun@-s|--srcDirRun@\$1@\$srcDir@path to where the config files are at runtime
 ARGS1@binDir@-b|--binDir@\$1@\$HOME/bin@path to where script files are instelled
 ARGS1@binDirRun@-B|--binDirRun@\$1@\$binDir@path to where script files are at runtime

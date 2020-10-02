@@ -7,6 +7,7 @@ GIT_PROMPT_THEME_FILE=__RUNDIR__/bash/gitprompt.bgptheme
 GIT_PROMPT_THEME="Custom"
 source __RUNDIR__/../bash-git-prompt/gitprompt.sh
 
+alias sshadd="ssh-add ~/.ssh/add/*"
 
 setvim () {
   export VIMSERVER_TOUSE="$1"

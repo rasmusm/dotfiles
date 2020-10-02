@@ -117,8 +117,8 @@ dopath("cfg_layouts")
 dopath("mod_query")
 dopath("mod_menu")
 dopath("mod_tiling")
-dopath("mod_statusbar")
---dopath("mod_dock")
+--dopath("mod_statusbar")
+dopath("mod_dock")
 dopath("mod_sp")
 dopath("mod_notionflux")
 dopath("mod_xrandr")
@@ -126,6 +126,7 @@ dopath("mod_xrandr")
 -- Load configuration of the Notion 'core'. Most bindings are here.
 dopath("cfg_notioncore")
 
+dopath("scripts/find_or_create")
 --
 -- Common customisations
 --

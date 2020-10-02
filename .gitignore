@@ -1,3 +1,6 @@
 vim/plugins.json
 /vim/plugs/
+vim/.netrwhist
 bash/bashrc.out.sh
+/notion/default-session-*/
+notion/notionflux.hist
